@@ -1,6 +1,10 @@
-#include "RPiSpotQtClient.h"
+#ifndef QT5
+    #include <QtGui>
+#else 
+    #include <QtWidgets>
+#endif
 
-#include <QtGui>
+#include "RPiSpotQtClient.h"
 #include <QtNetwork>
 #include <string>
 
@@ -37,7 +41,7 @@ RPiSpotQtClient::RPiSpotQtClient()
     connect(ONEon, SIGNAL(clicked()), this, SLOT(ONEonSlot()));
     connect(ONEoff, SIGNAL(clicked()), this, SLOT(ONEoffSlot()));
 
-    connect(TWOon, SIGNAL(clicked()), this, SLOT(T(TWOonSlot)));
+    connect(TWOon, SIGNAL(clicked()), this, SLOT(TWOonSlot()));
     connect(TWOoff, SIGNAL(clicked()), this, SLOT(TWOoffSlot()));
 
     connect(THREEon, SIGNAL(clicked()), this, SLOT(THREEonSlot()));
@@ -89,4 +93,4 @@ void RPiSpotQtClient::THREEoffSlot()
     socket->write("3of");
 }
 
-#include "RPiSpotQtClient.moc"
+#include "RPiSpotQtClient.moc" //please comment if not using kdevelop

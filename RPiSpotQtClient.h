@@ -1,7 +1,11 @@
 #ifndef RPiSpotQtClient_H
 #define RPiSpotQtClient_H
 
-#include <QtGui>
+#ifndef QT5
+    #include <QtGui>
+#else 
+    #include <QtWidgets>
+#endif
 #include <QtNetwork>
 
 class RPiSpotQtClient : public QMainWindow

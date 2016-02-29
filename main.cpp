@@ -1,6 +1,10 @@
-#include <QtGui/QApplication>
-#include "RPiSpotQtClient.h"
+#ifndef QT5
+    #include <QtGui/QApplication>
+#else
+    #include <QApplication>
+#endif
 
+#include "RPiSpotQtClient.h"
 
 int main(int argc, char** argv)
 {
