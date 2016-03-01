@@ -12,7 +12,8 @@
 #define SQY 390-SIDE
 #define SLY 85
 #define H 200
-#define SLWIDTH SIDE/2
+#define SLX SIDE/2
+//#define SLWIDTH 20
 
 RPiSpotQtClient::RPiSpotQtClient()
 {
@@ -93,12 +94,12 @@ RPiSpotQtClient::RPiSpotQtClient()
     labelFIVE->setAlignment(Qt::AlignCenter);
     labelSIX->setAlignment(Qt::AlignCenter);
     
-    sliderONE->setGeometry(SLWIDTH,SLY,SIDE,H);
-    sliderTWO->setGeometry((SLWIDTH + SIDE + 10),SLY,SIDE,H);
-    sliderTHREE->setGeometry((SIDE + 10)*2+SLWIDTH,SLY,SIDE,H);
-    sliderFOUR->setGeometry((SIDE + 10)*3+SLWIDTH,SLY,SIDE,H);
-    sliderFIVE->setGeometry((SIDE + 10)*4+SLWIDTH,SLY,SIDE,H);
-    sliderSIX->setGeometry((SIDE + 10)*5+SLWIDTH,SLY,SIDE,H);
+    sliderONE->setGeometry(SLX,SLY,20,H);
+    sliderTWO->setGeometry((SLX + SIDE + 10),SLY,20,H);
+    sliderTHREE->setGeometry((SIDE + 10)*2+SLX,SLY,20,H);
+    sliderFOUR->setGeometry((SIDE + 10)*3+SLX,SLY,20,H);
+    sliderFIVE->setGeometry((SIDE + 10)*4+SLX,SLY,20,H);
+    sliderSIX->setGeometry((SIDE + 10)*5+SLX,SLY,20,H);
     
     sliderLabelONE->setGeometry(10,290,SIDE,30);
     sliderLabelTWO->setGeometry((SIDE + 10)+10,290,SIDE,30);
