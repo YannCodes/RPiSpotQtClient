@@ -24,6 +24,8 @@ public slots:
     void sliderFOURSlot(int);
     void sliderFIVESlot(int);
     void sliderSIXSlot(int);
+    void writeSocket();
+    void displayError(QAbstractSocket::SocketError socketError);
 
 private:
     QTcpSocket *socket;
@@ -53,6 +55,7 @@ private:
     QLabel *sliderLabelFOUR;
     QLabel *sliderLabelFIVE;
     QLabel *sliderLabelSIX;
+    QString *state;
     QButtonGroup *buttonGroup;
 };
 

@@ -23,6 +23,8 @@ RPiSpotQtClient::RPiSpotQtClient()
     
     socket = new QTcpSocket(this);
 
+    state = new QString("on"); //temporary
+    
     IP = new QLineEdit(this);
     port = new QSpinBox(this);
     
@@ -130,6 +132,9 @@ RPiSpotQtClient::RPiSpotQtClient()
     port->setValue(12345);
     
     connect(buttonGroup,SIGNAL(buttonClicked(int)), this, SLOT(ButtonsSlot(int)));
+    connect(socket, SIGNAL(connected()), this, SLOT(writeSocket()));
+    connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),this, SLOT(displayError(QAbstractSocket::SocketError)));
+    
     connect(sliderONE,SIGNAL(valueChanged(int)), this, SLOT(sliderONESlot(int)));
     connect(sliderTWO,SIGNAL(valueChanged(int)), this, SLOT(sliderTWOSlot(int)));
     connect(sliderTHREE,SIGNAL(valueChanged(int)), this, SLOT(sliderTHREESlot(int)));
@@ -145,7 +150,8 @@ void RPiSpotQtClient::ButtonsSlot(int id)
 {
     QString color;
     int value = 1;
-    QString state("on"); //temporary
+    state->clear();
+    state->append("on");
     
     switch(id)
     {
@@ -177,14 +183,35 @@ void RPiSpotQtClient::ButtonsSlot(int id)
     
     if(value == 0)
     {
-        state = "of";
+        state->clear();
+        state->append("of");
     }
     
-    state.append(color); //temporary
+    state->append(color); //temporary
     
     socket->abort();
     socket->connectToHost(IP->text(), port->value());
-    socket->write(state.toLocal8Bit());
+}
+
+void RPiSpotQtClient::writeSocket()
+{
+    socket->write(state->toLocal8Bit());
+}
+
+void RPiSpotQtClient::displayError(QAbstractSocket::SocketError socketError)
+{
+    switch (socketError) {
+    case QAbstractSocket::RemoteHostClosedError:
+        break;
+    case QAbstractSocket::HostNotFoundError:
+        QMessageBox::critical(this, "Error","The host was not found. Please check the host name and port settings.");
+        break;
+    case QAbstractSocket::ConnectionRefusedError:
+        QMessageBox::critical(this, "Error","The connection was refused by the peer. Make sure the fortune server is running, and check that the host name and port settings are correct.");
+        break;
+    default:
+        QMessageBox::critical(this, "Error",tr("The following error occurred: %1.").arg(socket->errorString()));
+    }
 }
 
 void RPiSpotQtClient::sliderONESlot(int value)
