@@ -207,7 +207,7 @@ void RPiSpotQtClient::displayError(QAbstractSocket::SocketError socketError)
         QMessageBox::critical(this, "Error","The host was not found. Please check the host name and port settings.");
         break;
     case QAbstractSocket::ConnectionRefusedError:
-        QMessageBox::critical(this, "Error","The connection was refused by the peer. Make sure the fortune server is running, and check that the host name and port settings are correct.");
+        QMessageBox::critical(this, "Error","The connection was refused by the peer. Make sure the server is running, and check that the host name and port settings are correct.");
         break;
     default:
         QMessageBox::critical(this, "Error",tr("The following error occurred: %1.").arg(socket->errorString()));
