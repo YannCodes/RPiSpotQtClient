@@ -17,23 +17,43 @@ public:
     virtual ~RPiSpotQtClient();
 
 public slots:
-    void ONEonSlot();
-    void ONEoffSlot();
-    void TWOonSlot();
-    void TWOoffSlot();
-    void THREEonSlot();
-    void THREEoffSlot();
+    void ButtonsSlot(int);
+    void sliderONESlot(int);
+    void sliderTWOSlot(int);
+    void sliderTHREESlot(int);
+    void sliderFOURSlot(int);
+    void sliderFIVESlot(int);
+    void sliderSIXSlot(int);
 
 private:
     QTcpSocket *socket;
     QLineEdit *IP;
-    QPushButton *ONEon;
-    QPushButton *ONEoff;
-    QPushButton *TWOon;
-    QPushButton *TWOoff;
-    QPushButton *THREEon;
-    QPushButton *THREEoff;
     QSpinBox *port;
+    QPushButton *sendONE;
+    QPushButton *sendTWO;
+    QPushButton *sendTHREE;
+    QPushButton *sendFOUR;
+    QPushButton *sendFIVE;
+    QPushButton *sendSIX;
+    QSlider *sliderONE;
+    QSlider *sliderTWO;
+    QSlider *sliderTHREE;
+    QSlider *sliderFOUR;
+    QSlider *sliderFIVE;
+    QSlider *sliderSIX;
+    QLabel *labelONE;
+    QLabel *labelTWO;
+    QLabel *labelTHREE;
+    QLabel *labelFOUR;
+    QLabel *labelFIVE;
+    QLabel *labelSIX;
+    QLabel *sliderLabelONE;
+    QLabel *sliderLabelTWO;
+    QLabel *sliderLabelTHREE;
+    QLabel *sliderLabelFOUR;
+    QLabel *sliderLabelFIVE;
+    QLabel *sliderLabelSIX;
+    QButtonGroup *buttonGroup;
 };
 
 #endif // RPiSpotQtClient_H
